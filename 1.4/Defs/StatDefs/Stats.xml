@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+	<StatCategoryDef>
+		<defName>SC_SimpleCultivation</defName>
+		<label>Simple Cultivation</label>
+		<displayOrder>61</displayOrder>
+	</StatCategoryDef>
+
+	<StatDef>
+		<defName>SC_MaxQi</defName>
+		<label>Max Qi</label>
+		<category>SC_SimpleCultivation</category>
+		<description>Max Qi.</description>
+		<defaultBaseValue>0</defaultBaseValue>
+		<minValue>0</minValue>
+		<hideAtValue>0</hideAtValue>
+		<toStringStyle>Integer</toStringStyle>
+		<showOnPawns>true</showOnPawns>
+	</StatDef>
+
+	<StatDef>
+		<defName>SC_QiRegenRate</defName>
+		<label>Qi regen rate per second</label>
+		<category>SC_SimpleCultivation</category>
+		<description>Qi regen rate.</description>
+		<workerClass>SimpleCultivation.StatWorker_QiEnergyRate</workerClass>
+		<defaultBaseValue>0</defaultBaseValue>
+		<minValue>0</minValue>
+		<hideAtValue>0</hideAtValue>
+		<toStringStyle>Integer</toStringStyle>
+		<showOnPawns>true</showOnPawns>
+	</StatDef>
+	
+	<StatDef>
+		<defName>SC_QiRegenRatePerMaxQi</defName>
+		<label>Qi regen rate per max Qi pool per second</label>
+		<category>SC_SimpleCultivation</category>
+		<description>Qi regen rate per max Qi pool.</description>
+		<defaultBaseValue>0</defaultBaseValue>
+		<minValue>0</minValue>
+		<hideAtValue>0</hideAtValue>
+		<toStringStyle>PercentOne</toStringStyle>
+		<showOnPawns>true</showOnPawns>
+	</StatDef>
+
+</Defs>

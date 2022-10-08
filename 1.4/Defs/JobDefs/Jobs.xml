@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+    <JobDef>
+        <defName>SC_DeepMeditation</defName>
+        <driverClass>SimpleCultivation.JobDriver_DeepMeditation</driverClass>
+        <reportString>Closed off in meditation.</reportString>
+        <suspendable>false</suspendable>
+		<casualInterruptible>false</casualInterruptible>
+    </JobDef>
+
+</Defs>
