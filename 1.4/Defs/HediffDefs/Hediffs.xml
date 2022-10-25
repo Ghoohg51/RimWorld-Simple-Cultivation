@@ -58,59 +58,9 @@
 		<hediffClass>SimpleCultivation.Hediff_Core</hediffClass>
 		<stages>
 			<li>
-				<minSeverity>1</minSeverity>
-				<label>1</label>
 				<statOffsets>
 					<SC_MaxQi>15</SC_MaxQi>
 					<SC_QiRegenRate>1</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>2</minSeverity>
-				<label>2</label>
-				<statOffsets>
-					<SC_MaxQi>30</SC_MaxQi>
-					<SC_QiRegenRate>2</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>3</minSeverity>
-				<label>3</label>
-				<statOffsets>
-					<SC_MaxQi>45</SC_MaxQi>
-					<SC_QiRegenRate>3</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>4</minSeverity>
-				<label>4</label>
-				<statOffsets>
-					<SC_MaxQi>45</SC_MaxQi>
-					<SC_QiRegenRate>4</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>5</minSeverity>
-				<label>5</label>
-				<statOffsets>
-					<SC_MaxQi>60</SC_MaxQi>
-					<SC_QiRegenRate>5</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>6</minSeverity>
-				<label>6</label>
-				<statOffsets>
-					<SC_MaxQi>75</SC_MaxQi>
-					<SC_QiRegenRate>6</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>7</minSeverity>
-				<label>7</label>
-				<statOffsets>
-					<SC_MaxQi>90</SC_MaxQi>
-					<SC_QiRegenRate>7</SC_QiRegenRate>
 				</statOffsets>
 			</li>
 		</stages>
@@ -123,59 +73,9 @@
 		<hediffClass>SimpleCultivation.Hediff_Core</hediffClass>
 		<stages>
 			<li>
-				<minSeverity>1</minSeverity>
-				<label>1</label>
 				<statOffsets>
 					<SC_MaxQi>30</SC_MaxQi>
 					<SC_QiRegenRate>3</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>2</minSeverity>
-				<label>2</label>
-				<statOffsets>
-					<SC_MaxQi>60</SC_MaxQi>
-					<SC_QiRegenRate>6</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>3</minSeverity>
-				<label>3</label>
-				<statOffsets>
-					<SC_MaxQi>90</SC_MaxQi>
-					<SC_QiRegenRate>9</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>4</minSeverity>
-				<label>4</label>
-				<statOffsets>
-					<SC_MaxQi>120</SC_MaxQi>
-					<SC_QiRegenRate>12</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>5</minSeverity>
-				<label>5</label>
-				<statOffsets>
-					<SC_MaxQi>150</SC_MaxQi>
-					<SC_QiRegenRate>15</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>6</minSeverity>
-				<label>6</label>
-				<statOffsets>
-					<SC_MaxQi>180</SC_MaxQi>
-					<SC_QiRegenRate>18</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>7</minSeverity>
-				<label>7</label>
-				<statOffsets>
-					<SC_MaxQi>210</SC_MaxQi>
-					<SC_QiRegenRate>21</SC_QiRegenRate>
 				</statOffsets>
 			</li>
 		</stages>
@@ -188,59 +88,9 @@
 		<hediffClass>SimpleCultivation.Hediff_Core</hediffClass>
 		<stages>
 			<li>
-				<minSeverity>1</minSeverity>
-				<label>1</label>
 				<statOffsets>
 					<SC_MaxQi>60</SC_MaxQi>
 					<SC_QiRegenRate>5</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>2</minSeverity>
-				<label>2</label>
-				<statOffsets>
-					<SC_MaxQi>120</SC_MaxQi>
-					<SC_QiRegenRate>10</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>3</minSeverity>
-				<label>3</label>
-				<statOffsets>
-					<SC_MaxQi>180</SC_MaxQi>
-					<SC_QiRegenRate>15</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>4</minSeverity>
-				<label>4</label>
-				<statOffsets>
-					<SC_MaxQi>240</SC_MaxQi>
-					<SC_QiRegenRate>20</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>5</minSeverity>
-				<label>5</label>
-				<statOffsets>
-					<SC_MaxQi>300</SC_MaxQi>
-					<SC_QiRegenRate>25</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>6</minSeverity>
-				<label>6</label>
-				<statOffsets>
-					<SC_MaxQi>360</SC_MaxQi>
-					<SC_QiRegenRate>30</SC_QiRegenRate>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>7</minSeverity>
-				<label>7</label>
-				<statOffsets>
-					<SC_MaxQi>420</SC_MaxQi>
-					<SC_QiRegenRate>35</SC_QiRegenRate>
 				</statOffsets>
 			</li>
 		</stages>
@@ -253,59 +103,9 @@
 		<hediffClass>SimpleCultivation.Hediff_Core</hediffClass>
 		<stages>
 			<li>
-				<minSeverity>1</minSeverity>
-				<label>1</label>
 				<statOffsets>
 					<SC_MaxQi>120</SC_MaxQi>
 					<SC_QiRegenRatePerMaxQi>0.2</SC_QiRegenRatePerMaxQi>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>2</minSeverity>
-				<label>2</label>
-				<statOffsets>
-					<SC_MaxQi>240</SC_MaxQi>
-					<SC_QiRegenRatePerMaxQi>0.4</SC_QiRegenRatePerMaxQi>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>3</minSeverity>
-				<label>3</label>
-				<statOffsets>
-					<SC_MaxQi>360</SC_MaxQi>
-					<SC_QiRegenRatePerMaxQi>0.6</SC_QiRegenRatePerMaxQi>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>4</minSeverity>
-				<label>4</label>
-				<statOffsets>
-					<SC_MaxQi>480</SC_MaxQi>
-					<SC_QiRegenRatePerMaxQi>0.8</SC_QiRegenRatePerMaxQi>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>5</minSeverity>
-				<label>5</label>
-				<statOffsets>
-					<SC_MaxQi>600</SC_MaxQi>
-					<SC_QiRegenRatePerMaxQi>1</SC_QiRegenRatePerMaxQi>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>6</minSeverity>
-				<label>6</label>
-				<statOffsets>
-					<SC_MaxQi>720</SC_MaxQi>
-					<SC_QiRegenRatePerMaxQi>1.2</SC_QiRegenRatePerMaxQi>
-				</statOffsets>
-			</li>
-			<li>
-				<minSeverity>7</minSeverity>
-				<label>7</label>
-				<statOffsets>
-					<SC_MaxQi>840</SC_MaxQi>
-					<SC_QiRegenRatePerMaxQi>1.4</SC_QiRegenRatePerMaxQi>
 				</statOffsets>
 			</li>
 		</stages>

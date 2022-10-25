@@ -4,4 +4,6 @@
 	<SC.MeleeSkill> - Has melee skill</SC.MeleeSkill>
 	<SC.AlreadyHasCoreFormation>already has core formation</SC.AlreadyHasCoreFormation>
 	<SC.MaxCores>already has maximum count of cores</SC.MaxCores>
+	<SC.Qi>Qi</SC.Qi>
+	<SC.Shattered>Shattered</SC.Shattered>
 </LanguageData>

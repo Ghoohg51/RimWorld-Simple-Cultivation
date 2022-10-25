@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using Verse;
 
 namespace SimpleCultivation
@@ -6,7 +6,7 @@ namespace SimpleCultivation
     public class Hediff_Qi : HediffWithComps
     {
         public float resource;
-
+        public override bool ShouldRemove => pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().Any() is false;
         public override string Label => base.Label + ": " + (int)resource;
         public override void ExposeData()
         {

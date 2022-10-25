@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompQi.cs" />
+    <Compile Include="Gizmo_QiStatus.cs" />
     <Compile Include="HarmonyPatches\FloatMenuMakerMap_AddHumanlikeOrders_Patch.cs" />
     <Compile Include="HarmonyPatches\JobDriver_DriverTick_Patch.cs" />
     <Compile Include="HarmonyPatches\MeditationFocusDef_EnablingThingsExplanation_Patch.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="IncidentWorker_RareSpiritGrassSprout.cs" />
     <Compile Include="IngestionOutcomeDoer_RefillQi.cs" />
     <Compile Include="HarmonyPatches\Plant_PlantCollected_Patch.cs" />
+    <Compile Include="JobDriver_DeepMeditationChecks.cs" />
     <Compile Include="JobDriver_DeepMeditation.cs" />
     <Compile Include="SC_DefOf.cs" />
     <Compile Include="SimpleCultivationMod.cs" />

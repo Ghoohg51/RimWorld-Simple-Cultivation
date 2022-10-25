@@ -1,5 +1,4 @@
 ﻿using RimWorld;
-using Verse;
 
 namespace SimpleCultivation
 {
@@ -10,7 +9,6 @@ namespace SimpleCultivation
             var pawn = req.Thing;
             float value = pawn.GetStatValue(SC_DefOf.SC_QiRegenRatePerMaxQi);
             float maxQi = pawn.GetStatValue(SC_DefOf.SC_MaxQi);
-            Log.Message(req + " - " + pawn);
             if (value > 0)
             {
                 val += maxQi * value;

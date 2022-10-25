@@ -1,19 +1,17 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
-using Verse;
 using Verse.AI;
 
 namespace SimpleCultivation
 {
-    public class JobDriver_DeepMeditation : JobDriver
+    public class JobDriver_DeepMeditationChecks : JobDriver
     {
-        public int MeditationPeriod => Prefs.DevMode ? 1000 : GenDate.TicksPerHour * 10;
+        public int MeditationPeriod => GenDate.TicksPerHour * 10;
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true;
         }
         public bool isCompletedSuccessfully;
-        public Hediff_CoreFormation Hediff => pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_CoreFormation) as Hediff_CoreFormation;
         public override IEnumerable<Toil> MakeNewToils()
         {
             yield return Toils_General.Wait(MeditationPeriod).WithProgressBarToilDelay(TargetIndex.A);
@@ -22,14 +20,14 @@ namespace SimpleCultivation
                 initAction = delegate
                 {
                     isCompletedSuccessfully = true;
-                    Hediff.CheckCompleted();
+                    pawn.GetComp<CompQi>().CheckCompleted();
                 }
             };
             AddFinishAction(delegate
             {
                 if (!isCompletedSuccessfully)
                 {
-                    Hediff.CheckCancelled();
+                    pawn.GetComp<CompQi>().CheckFailed();
                 }
             });
         }

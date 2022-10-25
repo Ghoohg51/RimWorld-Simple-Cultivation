@@ -1,4 +1,6 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace SimpleCultivation
@@ -6,7 +8,6 @@ namespace SimpleCultivation
     public class Hediff_CoreFormation : HediffWithComps
     {
         private float progress;
-
         public override string Label => base.Label + " (" + progress.ToStringPercent() + ")";
         public override void PostAdd(DamageInfo? dinfo)
         {
@@ -14,12 +15,19 @@ namespace SimpleCultivation
             progress = 0.01f;
         }
 
-        public void AddProgress(float? progressValue = null)
+        public void AddProgress(float? progressValue = null, bool instantCheck = false)
         {
             progress += progressValue ?? 1f / (GenDate.TicksPerHour * 210f);
             if (progress >= 1f)
             {
-                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditation));
+                if (instantCheck is false)
+                {
+                    pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditation));
+                }
+                else
+                {
+                    CheckCompleted();
+                }
             }
         }
 
@@ -53,6 +61,12 @@ namespace SimpleCultivation
             else
             {
                 progress = 0.75f;
+            }
+
+            List<Hediff_Core> cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().ToList();
+            if (cores.Count == 7)
+            {
+                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditationChecks));
             }
         }
 

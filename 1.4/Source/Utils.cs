@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace SimpleCultivation
@@ -10,27 +11,34 @@ namespace SimpleCultivation
     {
         static Utils()
         {
-            Startup();
+            AssignDefs();
         }
 
         public static void AssignCore(HediffDef core, Pawn pawn)
         {
-            if (pawn.health.hediffSet.GetFirstHediffOfDef(core) is Hediff_Core hediff)
+            Hediff_Core hediff = HediffMaker.MakeHediff(core, pawn, pawn.def.race.body.corePart) as Hediff_Core;
+            pawn.health.AddHediff(hediff, pawn.def.race.body.corePart);
+        }
+
+        public static void OffsetQi(float value, Pawn pawn)
+        {
+            if (pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) is Hediff_Qi hediff)
             {
-                hediff.Severity++;
+                hediff.resource += value;
             }
             else
             {
-                hediff = HediffMaker.MakeHediff(core, pawn, pawn.def.race.body.corePart) as Hediff_Core;
-                hediff.Severity = 1;
-                pawn.health.AddHediff(hediff, pawn.def.race.body.corePart);
+                hediff = HediffMaker.MakeHediff(SC_DefOf.SC_QiResource, pawn, pawn.def.race.body.corePart) as Hediff_Qi;
+                hediff.resource = value;
+                pawn.health.AddHediff(hediff);
             }
+            hediff.resource = Mathf.Min(hediff.resource, pawn.GetStatValue(SC_DefOf.SC_MaxQi));
         }
-        private static void Startup()
+        private static void AssignDefs()
         {
-            foreach (var biomeDef in DefDatabase<BiomeDef>.AllDefs)
+            foreach (BiomeDef biomeDef in DefDatabase<BiomeDef>.AllDefs)
             {
-                var regularGrass = biomeDef.wildPlants.FirstOrDefault(x => x.plant == ThingDefOf.Plant_Grass);
+                BiomePlantRecord regularGrass = biomeDef.wildPlants.FirstOrDefault(x => x.plant == ThingDefOf.Plant_Grass);
                 if (regularGrass != null)
                 {
                     biomeDef.wildPlants.Add(new BiomePlantRecord
@@ -55,11 +63,15 @@ namespace SimpleCultivation
                 });
             }
 
-            foreach (var thingDef in DefDatabase<ThingDef>.AllDefs)
+            foreach (ThingDef thingDef in DefDatabase<ThingDef>.AllDefs)
             {
-                if (thingDef.IsMeleeWeapon)
+                if (thingDef.race?.Humanlike ?? false)
                 {
-                    var stuff = GenStuff.DefaultStuffFor(thingDef);
+                    thingDef.comps.Add(new CompProperties_Qi());
+                }
+                else if (thingDef.IsMeleeWeapon)
+                {
+                    ThingDef stuff = GenStuff.DefaultStuffFor(thingDef);
                     float meleeCooldownGetter(ThingDef d)
                     {
                         return d.tools.Average(x => x.AdjustedCooldown(thingDef, stuff));
@@ -72,10 +84,11 @@ namespace SimpleCultivation
                     {
                         return meleeDamageGetter(d) * 0.82f / meleeCooldownGetter(d);
                     }
-                    if (meleeDpsGetter(thingDef) > 4.5f)
+                    float meleeDps = meleeDpsGetter(thingDef);
+                    if (meleeDps > 4.5f)
                     {
                         thingDef.comps ??= new List<CompProperties>();
-                        var comp = thingDef.GetCompProperties<CompProperties_MeditationFocus>();
+                        CompProperties_MeditationFocus comp = thingDef.GetCompProperties<CompProperties_MeditationFocus>();
                         if (comp is null)
                         {
                             comp = new CompProperties_MeditationFocus
@@ -90,7 +103,7 @@ namespace SimpleCultivation
                                 thingDef.statBases.Add(new StatModifier
                                 {
                                     stat = StatDefOf.MeditationFocusStrength,
-                                    value = 0.0f
+                                    value = Mathf.CeilToInt(meleeDps)
                                 });
                             }
                         }
