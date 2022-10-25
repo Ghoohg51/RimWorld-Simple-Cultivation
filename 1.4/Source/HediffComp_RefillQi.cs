@@ -18,9 +18,9 @@ namespace SimpleCultivation
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
-            var hediff = Pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) as Hediff_Qi;
+            Hediff_Qi hediff = Pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) as Hediff_Qi;
             hediff ??= Pawn.health.AddHediff(SC_DefOf.SC_QiResource) as Hediff_Qi;
-            hediff.resource += Props.qiRefillRate ?? qiRefillRate;
+            hediff.Resource += Props.qiRefillRate ?? qiRefillRate;
         }
         public override void CompExposeData()
         {

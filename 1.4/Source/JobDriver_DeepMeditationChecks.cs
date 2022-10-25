@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using Verse;
 using Verse.AI;
 
 namespace SimpleCultivation
@@ -7,6 +8,11 @@ namespace SimpleCultivation
     public class JobDriver_DeepMeditationChecks : JobDriver
     {
         public int MeditationPeriod => GenDate.TicksPerHour * 10;
+
+        public override string GetReport()
+        {
+            return base.GetReport() + "SC.Stage".Translate(pawn.GetComp<CompQi>().currentCheckStage + 1);
+        }
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             return true;

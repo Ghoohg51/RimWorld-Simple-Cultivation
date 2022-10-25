@@ -12,15 +12,15 @@ namespace SimpleCultivation
     {
         public static void Postfix(Vector3 clickPos, Pawn pawn, ref List<FloatMenuOption> opts)
         {
-            var c = IntVec3.FromVector3(clickPos);
-            var thingList = c.GetThingList(pawn.Map);
+            IntVec3 c = IntVec3.FromVector3(clickPos);
+            List<Thing> thingList = c.GetThingList(pawn.Map);
             for (int i = 0; i < thingList.Count; i++)
             {
-                var t = thingList[i];
+                Thing t = thingList[i];
                 if (t.def == SC_DefOf.SC_CoreIgnitionPill)
                 {
                     string text = (!t.def.ingestible.ingestCommandString.NullOrEmpty()) ? string.Format(t.def.ingestible.ingestCommandString, t.LabelShort) : ((string)"ConsumeThing".Translate(t.LabelShort, t));
-                    var floatMenuOption = opts.FirstOrDefault((FloatMenuOption x) => x.Label.Contains(text));
+                    FloatMenuOption floatMenuOption = opts.FirstOrDefault((FloatMenuOption x) => x.Label.Contains(text));
                     if (floatMenuOption != null)
                     {
                         if (pawn.health.hediffSet.hediffs.Any(x => x is Hediff_CoreFormation))
@@ -28,7 +28,13 @@ namespace SimpleCultivation
                             floatMenuOption.Label += ": " + "SC.AlreadyHasCoreFormation".Translate();
                             floatMenuOption.action = null;
                         }
-                        if (pawn.health.hediffSet.hediffs.Sum(x => x.Severity) >= 7)
+                        List<Hediff_Core> cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().ToList();
+                        if (cores.Any(x => x.Shattered))
+                        {
+                            floatMenuOption.Label += ": " + "SC.ShatteredCoreWarning".Translate();
+                            floatMenuOption.action = null;
+                        }
+                        else if (pawn.health.hediffSet.hediffs.Count >= 7)
                         {
                             floatMenuOption.Label += ": " + "SC.MaxCores".Translate();
                             floatMenuOption.action = null;

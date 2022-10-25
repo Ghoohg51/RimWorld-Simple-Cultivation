@@ -34,11 +34,11 @@ namespace SimpleCultivation
             Widgets.Label(rect3, "SC.Qi".Translate());
             var rect4 = rect2;
             rect4.yMin = rect2.y + (rect2.height / 2f);
-            float fillPercent = compQi.Hediff.resource / compQi.parent.GetStatValue(SC_DefOf.SC_MaxQi);
+            float fillPercent = compQi.Hediff.Resource / compQi.parent.GetStatValue(SC_DefOf.SC_MaxQi);
             Widgets.FillableBar(rect4, fillPercent, FullShieldBarTex, EmptyShieldBarTex, doBorder: false);
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleCenter;
-            Widgets.Label(rect4, compQi.Hediff.resource + " / " + compQi.parent.GetStatValue(SC_DefOf.SC_MaxQi));
+            Widgets.Label(rect4, compQi.Hediff.Resource + " / " + compQi.parent.GetStatValue(SC_DefOf.SC_MaxQi));
             Text.Anchor = TextAnchor.UpperLeft;
             return new GizmoResult(GizmoState.Clear);
         }

@@ -6,4 +6,6 @@
 	<SC.MaxCores>already has maximum count of cores</SC.MaxCores>
 	<SC.Qi>Qi</SC.Qi>
 	<SC.Shattered>Shattered</SC.Shattered>
+	<SC.ShatteredCoreWarning>Shattered core prevents from core formation. Heal or remove it first.</SC.ShatteredCoreWarning>
+	<SC.Stage> Stage {0}.</SC.Stage>
 </LanguageData>

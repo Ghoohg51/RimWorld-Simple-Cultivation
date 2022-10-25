@@ -12,7 +12,7 @@
     <JobDef>
         <defName>SC_DeepMeditationChecks</defName>
         <driverClass>SimpleCultivation.JobDriver_DeepMeditationChecks</driverClass>
-        <reportString>Closed off in meditation.</reportString>
+        <reportString>Performing checks.</reportString>
         <suspendable>false</suspendable>
 		<casualInterruptible>false</casualInterruptible>
     </JobDef>

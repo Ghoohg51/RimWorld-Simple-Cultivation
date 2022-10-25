@@ -63,7 +63,8 @@ namespace SimpleCultivation
                 progress = 0.75f;
             }
 
-            List<Hediff_Core> cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().ToList();
+            List<Hediff_Core> cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>()
+                .Where(x => x.hitpoints == Hediff_Core.MaxHitpoints).ToList();
             if (cores.Count == 7)
             {
                 pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditationChecks));

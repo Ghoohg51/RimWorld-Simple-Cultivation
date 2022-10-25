@@ -11,16 +11,6 @@
 	</HediffDef>
 
 	<HediffDef>
-		<defName>SC_Core</defName>
-		<label>Qi</label>
-		<description>.</description>
-		<hediffClass>SimpleCultivation.Hediff_Qi</hediffClass>
-		<defaultLabelColor>(1,0,0.5)</defaultLabelColor>
-		<isBad>false</isBad>
-	</HediffDef>
-
-
-	<HediffDef>
 		<defName>SC_QiResourceRefill</defName>
 		<label>Qi</label>
 		<description>.</description>
@@ -63,6 +53,10 @@
 					<SC_QiRegenRate>1</SC_QiRegenRate>
 				</statOffsets>
 			</li>
+			<li>
+				<minSeverity>1</minSeverity>
+				<label>Shattered</label>
+			</li>
 		</stages>
 	</HediffDef>
 	
@@ -77,6 +71,10 @@
 					<SC_MaxQi>30</SC_MaxQi>
 					<SC_QiRegenRate>3</SC_QiRegenRate>
 				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>1</minSeverity>
+				<label>Shattered</label>
 			</li>
 		</stages>
 	</HediffDef>
@@ -93,6 +91,10 @@
 					<SC_QiRegenRate>5</SC_QiRegenRate>
 				</statOffsets>
 			</li>
+			<li>
+				<minSeverity>1</minSeverity>
+				<label>Shattered</label>
+			</li>
 		</stages>
 	</HediffDef>
 	
@@ -107,6 +109,10 @@
 					<SC_MaxQi>120</SC_MaxQi>
 					<SC_QiRegenRatePerMaxQi>0.2</SC_QiRegenRatePerMaxQi>
 				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>1</minSeverity>
+				<label>Shattered</label>
 			</li>
 		</stages>
 	</HediffDef>

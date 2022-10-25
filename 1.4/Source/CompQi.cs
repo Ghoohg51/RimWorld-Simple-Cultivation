@@ -18,6 +18,7 @@ namespace SimpleCultivation
 
         public int currentCheckStage;
         public Hediff_Qi Hediff => pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) as Hediff_Qi;
+        public bool PerformingChecks => pawn.CurJobDef == SC_DefOf.SC_DeepMeditationChecks;
         public override void CompTick()
         {
             base.CompTick();
@@ -36,16 +37,18 @@ namespace SimpleCultivation
             currentCheckStage++;
             if (currentCheckStage == 6)
             {
-
+                Log.Message("Passed all checks");
             }
             else
             {
+                pawn.jobs.StopAll();
                 pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditationChecks));
             }
         }
 
         public void CheckFailed()
         {
+            currentCheckStage = 0;
             if (pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().TryRandomElement(out Hediff_Core core))
             {
                 core.ShatterCore(10);

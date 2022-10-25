@@ -24,15 +24,16 @@ namespace SimpleCultivation
         {
             if (pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) is Hediff_Qi hediff)
             {
-                hediff.resource += value;
+                hediff.Resource += value;
+                hediff.Resource = Mathf.Min(hediff.Resource, pawn.GetStatValue(SC_DefOf.SC_MaxQi));
             }
-            else
+            else if (value > 0)
             {
                 hediff = HediffMaker.MakeHediff(SC_DefOf.SC_QiResource, pawn, pawn.def.race.body.corePart) as Hediff_Qi;
-                hediff.resource = value;
+                hediff.Resource = value;
                 pawn.health.AddHediff(hediff);
+                hediff.Resource = Mathf.Min(hediff.Resource, pawn.GetStatValue(SC_DefOf.SC_MaxQi));
             }
-            hediff.resource = Mathf.Min(hediff.resource, pawn.GetStatValue(SC_DefOf.SC_MaxQi));
         }
         private static void AssignDefs()
         {
