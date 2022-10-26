@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using RimWorld;
+using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace SimpleCultivation
@@ -13,12 +15,14 @@ namespace SimpleCultivation
             set
             {
                 resourceInt = value;
-                if (resourceInt <= 0 && CompQi.PerformingChecks)
+                resourceInt = Mathf.Min(Mathf.Max(resourceInt, 0), pawn.GetStatValue(SC_DefOf.SC_MaxQi));
+                if (resourceInt == 0 && CompQi.PerformingChecks)
                 {
                     pawn.Kill(null);
                 }
             }
         }
+
         public override bool ShouldRemove => pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().Any() is false;
         public override string Label => base.Label + ": " + (int)resourceInt;
         public override void ExposeData()

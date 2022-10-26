@@ -116,4 +116,61 @@
 			</li>
 		</stages>
 	</HediffDef>
+	
+	
+	<HediffDef>
+		<defName>SC_CoreAlignmentDrain</defName>
+		<label>Core alignment drain</label>
+		<description>Drains Qi.</description>
+		<stages>
+			<li>
+				<minSeverity>1</minSeverity>
+				<statOffsets>
+					<SC_QiRegenRate>-5</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>2</minSeverity>
+				<statOffsets>
+					<SC_QiRegenRate>-10</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>3</minSeverity>
+				<statOffsets>
+					<SC_QiRegenRate>-15</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>4</minSeverity>
+				<statOffsets>
+					<SC_QiRegenRate>-20</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>5</minSeverity>
+				<statOffsets>
+					<SC_QiRegenRate>-25</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>6</minSeverity>
+				<statOffsets>
+					<SC_QiRegenRate>-30</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>7</minSeverity>
+				<statOffsets>
+					<SC_QiRegenRate>-35</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+			<li>
+				<minSeverity>8</minSeverity>
+				<statOffsets>
+					<SC_QiRegenRate>-40</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
 </Defs>

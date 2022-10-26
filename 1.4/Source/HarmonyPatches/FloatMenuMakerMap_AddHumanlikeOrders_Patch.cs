@@ -29,7 +29,7 @@ namespace SimpleCultivation
                             floatMenuOption.action = null;
                         }
                         List<Hediff_Core> cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().ToList();
-                        if (cores.Any(x => x.Shattered))
+                        if (cores.Any(x => x.ShatteredFully))
                         {
                             floatMenuOption.Label += ": " + "SC.ShatteredCoreWarning".Translate();
                             floatMenuOption.action = null;

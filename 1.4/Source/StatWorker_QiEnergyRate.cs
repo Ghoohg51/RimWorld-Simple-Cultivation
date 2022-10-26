@@ -5,6 +5,17 @@ namespace SimpleCultivation
 {
     public class StatWorker_QiEnergyRate : StatWorker
     {
+        public override bool ShouldShowFor(StatRequest req)
+        {
+            if (req.Pawn != null)
+            {
+                if (req.Pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) is null)
+                {
+                    return false;
+                }
+            }
+            return base.ShouldShowFor(req);
+        }
         public override void FinalizeValue(StatRequest req, ref float val, bool applyPostProcess)
         {
             Thing pawn = req.Thing;

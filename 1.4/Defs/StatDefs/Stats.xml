@@ -26,8 +26,6 @@
 		<description>Qi regen rate.</description>
 		<workerClass>SimpleCultivation.StatWorker_QiEnergyRate</workerClass>
 		<defaultBaseValue>0</defaultBaseValue>
-		<minValue>0</minValue>
-		<hideAtValue>0</hideAtValue>
 		<toStringStyle>Integer</toStringStyle>
 		<showOnPawns>true</showOnPawns>
 	</StatDef>

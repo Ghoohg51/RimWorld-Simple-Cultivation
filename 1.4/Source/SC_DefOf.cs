@@ -22,5 +22,6 @@ namespace SimpleCultivation
         public static StatDef SC_QiRegenRate;
         public static StatDef SC_QiRegenRatePerMaxQi;
         public static StatCategoryDef SC_SimpleCultivation;
+        public static HediffDef SC_CoreAlignmentDrain;
     }
 }

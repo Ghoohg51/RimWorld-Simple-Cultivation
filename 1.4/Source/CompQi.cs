@@ -49,9 +49,29 @@ namespace SimpleCultivation
         public void CheckFailed()
         {
             currentCheckStage = 0;
-            if (pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().TryRandomElement(out Hediff_Core core))
+            var core = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().RandomElement();
+            core.ShatterCore(10);
+            if (core.ShatteredFully)
             {
-                core.ShatterCore(10);
+                var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_CoreAlignmentDrain);
+                if (hediff != null)
+                {
+                    pawn.health.RemoveHediff(hediff);
+                }
+            }
+            else
+            {
+                var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_CoreAlignmentDrain);
+                if (hediff is null)
+                {
+                    hediff = HediffMaker.MakeHediff(SC_DefOf.SC_CoreAlignmentDrain, pawn);
+                    hediff.Severity = 1;
+                    pawn.health.AddHediff(hediff);
+                }
+                else
+                {
+                    hediff.Severity += 1;
+                }
             }
         }
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
