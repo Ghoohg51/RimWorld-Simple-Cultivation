@@ -16,4 +16,12 @@
         <suspendable>false</suspendable>
 		<casualInterruptible>false</casualInterruptible>
     </JobDef>
+	
+    <JobDef>
+        <defName>SC_CoreAlignmentStage</defName>
+        <driverClass>SimpleCultivation.JobDriver_CoreAlignment</driverClass>
+        <reportString>Performing core alignment.</reportString>
+        <suspendable>false</suspendable>
+		<casualInterruptible>false</casualInterruptible>
+    </JobDef>
 </Defs>

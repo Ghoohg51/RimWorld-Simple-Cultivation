@@ -117,6 +117,18 @@
 		</stages>
 	</HediffDef>
 	
+	<HediffDef>
+		<defName>SC_CoreAlignmentDrainChecks</defName>
+		<label>Core alignment drain (performing checks)</label>
+		<description>Drains Qi.</description>
+		<stages>
+			<li>
+				<statOffsets>
+					<SC_QiRegenRate>-10</SC_QiRegenRate>
+				</statOffsets>
+			</li>
+		</stages>
+	</HediffDef>
 	
 	<HediffDef>
 		<defName>SC_CoreAlignmentDrain</defName>

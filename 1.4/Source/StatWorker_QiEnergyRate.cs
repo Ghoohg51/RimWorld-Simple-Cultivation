@@ -26,10 +26,6 @@ namespace SimpleCultivation
             {
                 val += maxQi * value;
             }
-            if (comp.PerformingChecks)
-            {
-                val -= 10;
-            }
             base.FinalizeValue(req, ref val, applyPostProcess);
         }
     }

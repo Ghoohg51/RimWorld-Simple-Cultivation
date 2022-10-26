@@ -33,6 +33,20 @@ namespace SimpleCultivation
                 pawn.health.AddHediff(hediff);
             }
         }
+
+        public static List<BodyPartRecord> AvailableBodyPartsForCore(this Pawn pawn)
+        {
+            List<BodyPartRecord> list = new List<BodyPartRecord>();
+            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(SC_DefOf.Arms)));
+            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(BodyPartGroupDefOf.Legs)));
+            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(BodyPartGroupDefOf.FullHead)));
+            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Heart));
+            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Stomach));
+            var cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>();
+            var filteredList = list.Where(x => cores.Any(y => y.Part == x) is false).ToList();
+            Log.Message("filteredList: " + string.Join(", ", filteredList));
+            return filteredList;
+        }
         private static void AssignDefs()
         {
             foreach (BiomeDef biomeDef in DefDatabase<BiomeDef>.AllDefs)

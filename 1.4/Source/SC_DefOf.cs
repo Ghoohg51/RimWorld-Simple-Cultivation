@@ -23,5 +23,9 @@ namespace SimpleCultivation
         public static StatDef SC_QiRegenRatePerMaxQi;
         public static StatCategoryDef SC_SimpleCultivation;
         public static HediffDef SC_CoreAlignmentDrain;
+        public static MentalBreakDef Catatonic;
+        public static JobDef SC_CoreAlignmentStage;
+        public static BodyPartGroupDef Arms;
+        public static HediffDef SC_CoreAlignmentDrainChecks;
     }
 }

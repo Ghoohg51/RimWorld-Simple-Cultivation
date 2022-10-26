@@ -28,8 +28,9 @@ namespace SimpleCultivation
             }
         }
         public override bool ShouldRemove => false;
-        public bool CanHeal => ShatteredFully is false;
+        public bool CanHeal => hitpoints < MaxHitpoints && ShatteredFully is false;
         public bool ShatteredFully => hitpoints == 0;
+        public bool Moved => Part != null;
         public void ShatterCore(float damage)
         {
             hitpoints = Mathf.Max(hitpoints - damage, 0);

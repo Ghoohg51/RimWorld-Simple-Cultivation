@@ -8,4 +8,6 @@
 	<SC.Shattered>Shattered</SC.Shattered>
 	<SC.ShatteredCoreWarning>Shattered core prevents from core formation. Heal or remove it first.</SC.ShatteredCoreWarning>
 	<SC.Stage> Stage {0}.</SC.Stage>
+	<SC.ShatteredCore>Shattered core.</SC.ShatteredCore>
+	<SC.BeginCoreAlignmentStage>Begin core alignment stage</SC.BeginCoreAlignmentStage>
 </LanguageData>

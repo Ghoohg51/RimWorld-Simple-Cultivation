@@ -5,37 +5,37 @@ using Verse.AI;
 
 namespace SimpleCultivation
 {
-    public class JobDriver_DeepMeditationChecks : JobDriver
+    public class JobDriver_DeepMeditationChecks : JobDriver_DeepMeditationBase
     {
-        public int MeditationPeriod => GenDate.TicksPerHour * 10;
-
+        public override int MeditationPeriod => GenDate.TicksPerHour * 10;
         public override string GetReport()
         {
             return base.GetReport() + "SC.Stage".Translate(pawn.GetComp<CompQi>().currentCheckStage + 1);
         }
-        public override bool TryMakePreToilReservations(bool errorOnFailed)
+
+        public override void Notify_Starting()
         {
-            return true;
+            base.Notify_Starting();
+            pawn.health.AddHediff(SC_DefOf.SC_CoreAlignmentDrainChecks);
         }
-        public bool isCompletedSuccessfully;
-        public override IEnumerable<Toil> MakeNewToils()
+        public override void OnCompleted()
         {
-            yield return Toils_General.Wait(MeditationPeriod).WithProgressBarToilDelay(TargetIndex.A);
-            yield return new Toil
+            pawn.GetComp<CompQi>().CheckCompleted();
+            var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_CoreAlignmentDrainChecks);
+            if (hediff != null)
             {
-                initAction = delegate
-                {
-                    isCompletedSuccessfully = true;
-                    pawn.GetComp<CompQi>().CheckCompleted();
-                }
-            };
-            AddFinishAction(delegate
+                pawn.health.RemoveHediff(hediff);
+            }
+        }
+
+        public override void OnCancelled()
+        {
+            pawn.GetComp<CompQi>().CheckFailed();
+            var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_CoreAlignmentDrainChecks);
+            if (hediff != null)
             {
-                if (!isCompletedSuccessfully)
-                {
-                    pawn.GetComp<CompQi>().CheckFailed();
-                }
-            });
+                pawn.health.RemoveHediff(hediff);
+            }
         }
     }
 }

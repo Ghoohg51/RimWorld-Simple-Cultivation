@@ -17,8 +17,11 @@ namespace SimpleCultivation
         public Pawn pawn => parent as Pawn;
 
         public int currentCheckStage;
+        public bool PassedChecks => currentCheckStage == 6;
         public Hediff_Qi Hediff => pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) as Hediff_Qi;
         public bool PerformingChecks => pawn.CurJobDef == SC_DefOf.SC_DeepMeditationChecks;
+
+        public Hediff_Core coreBeingMoved;
         public override void CompTick()
         {
             base.CompTick();
@@ -34,15 +37,18 @@ namespace SimpleCultivation
 
         public void CheckCompleted()
         {
-            currentCheckStage++;
-            if (currentCheckStage == 6)
+            if (Rand.Chance(0.65f))
             {
-                Log.Message("Passed all checks");
+                CheckFailed();
             }
             else
             {
-                pawn.jobs.StopAll();
-                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditationChecks));
+                currentCheckStage++;
+                if (currentCheckStage < 6)
+                {
+                    pawn.jobs.StopAll();
+                    pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditationChecks));
+                }
             }
         }
 
@@ -58,6 +64,7 @@ namespace SimpleCultivation
                 {
                     pawn.health.RemoveHediff(hediff);
                 }
+                SC_DefOf.Catatonic.Worker.TryStart(pawn, "SC.ShatteredCore".Translate(), false);
             }
             else
             {
@@ -140,6 +147,7 @@ namespace SimpleCultivation
         {
             base.PostExposeData();
             Scribe_Values.Look(ref currentCheckStage, "currentCheckStage");
+            Scribe_References.Look(ref coreBeingMoved, "coreBeingMoved");
         }
     }
 }
