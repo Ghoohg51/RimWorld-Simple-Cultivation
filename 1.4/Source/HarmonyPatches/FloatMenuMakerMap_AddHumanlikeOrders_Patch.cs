@@ -26,15 +26,19 @@ namespace SimpleCultivation
                     var comp = pawn.GetComp<CompQi>();
                     if (comp != null && comp.PassedChecks)
                     {
-                        if (pawn.health.hediffSet.hediffs.OfType<Hediff_Core>()
-                            .Where(x => x.Moved is false).TryRandomElement(out var core))
+                        var availableParts = pawn.AvailableBodyPartsForCore();
+                        var cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().Where(x => x.Moved is false);
+                        foreach (var part in availableParts)
                         {
-                            var list = pawn.AvailableBodyPartsForCore();
-                            opts.Add(new FloatMenuOption("SC.BeginCoreAlignmentStage".Translate(), delegate
+                            foreach (var core in cores)
                             {
-                                comp.coreBeingMoved = core;
-                                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_CoreAlignmentStage, t));
-                            }));
+                                opts.Add(new FloatMenuOption("SC.BeginCoreAlignmentStage".Translate(core.Label, part.Label), delegate
+                                {
+                                    comp.coreBeingMoved = core;
+                                    comp.partBeingAssigned = part;
+                                    pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_CoreAlignmentStage, t));
+                                }));
+                            }
                         }
                     }
                 }

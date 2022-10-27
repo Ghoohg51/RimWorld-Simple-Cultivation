@@ -4,7 +4,7 @@ namespace SimpleCultivation
 {
     public class JobDriver_DeepMeditation : JobDriver_DeepMeditationBase
     {
-        public override int MeditationPeriod => GenDate.TicksPerHour * 10;
+        public override int MeditationPeriod => SimpleCultivationSettings.devMode ? 1000 : GenDate.TicksPerHour * 10;
         public Hediff_CoreFormation Hediff => pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_CoreFormation) as Hediff_CoreFormation;
         public override void OnCompleted()
         {

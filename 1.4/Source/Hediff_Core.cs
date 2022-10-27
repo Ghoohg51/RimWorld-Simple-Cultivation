@@ -30,7 +30,7 @@ namespace SimpleCultivation
         public override bool ShouldRemove => false;
         public bool CanHeal => hitpoints < MaxHitpoints && ShatteredFully is false;
         public bool ShatteredFully => hitpoints == 0;
-        public bool Moved => Part != null;
+        public bool Moved => Part != pawn.def.race.body.corePart;
         public void ShatterCore(float damage)
         {
             hitpoints = Mathf.Max(hitpoints - damage, 0);
@@ -47,11 +47,10 @@ namespace SimpleCultivation
             {
                 Severity = 0;
             }
-            List<Hediff_Core> cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>()
-                .Where(x => x.hitpoints == MaxHitpoints).ToList();
-            if (cores.Count == 7)
+
+            if (pawn.GetComp<CompQi>().CanPerformChecks)
             {
-                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditationChecks));
+                pawn.StartChecksJob();
             }
         }
 

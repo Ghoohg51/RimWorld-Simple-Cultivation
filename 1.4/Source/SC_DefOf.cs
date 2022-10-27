@@ -26,6 +26,7 @@ namespace SimpleCultivation
         public static MentalBreakDef Catatonic;
         public static JobDef SC_CoreAlignmentStage;
         public static BodyPartGroupDef Arms;
+        public static BodyPartGroupDef HeadAttackTool;
         public static HediffDef SC_CoreAlignmentDrainChecks;
     }
 }

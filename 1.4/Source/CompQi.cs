@@ -17,10 +17,24 @@ namespace SimpleCultivation
         public Pawn pawn => parent as Pawn;
 
         public int currentCheckStage;
-        public bool PassedChecks => currentCheckStage == 6;
+        public bool PassedChecks => currentCheckStage == 7;
         public Hediff_Qi Hediff => pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) as Hediff_Qi;
         public bool PerformingChecks => pawn.CurJobDef == SC_DefOf.SC_DeepMeditationChecks;
 
+        public bool CanPerformChecks
+        {
+            get
+            {
+                if (PassedChecks is false && pawn.health.hediffSet.hediffs.OfType<Hediff_Core>()
+                    .Where(x => x.hitpoints == Hediff_Core.MaxHitpoints).Count() == 7)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public BodyPartRecord partBeingAssigned;
         public Hediff_Core coreBeingMoved;
         public override void CompTick()
         {
@@ -32,25 +46,31 @@ namespace SimpleCultivation
                 {
                     Utils.OffsetQi(qiOffset, parent as Pawn);
                 }
+
+                if (CanPerformChecks && PerformingChecks is false) 
+                {
+                    pawn.StartChecksJob();
+                }
             }
         }
 
         public void CheckCompleted()
         {
-            if (Rand.Chance(0.65f))
+            if (Rand.Chance(0.65f) && SimpleCultivationSettings.devMode is false)
             {
                 CheckFailed();
             }
             else
             {
                 currentCheckStage++;
-                if (currentCheckStage < 6)
+                if (CanPerformChecks)
                 {
-                    pawn.jobs.StopAll();
-                    pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditationChecks));
+                    pawn.StartChecksJob();
                 }
             }
         }
+
+
 
         public void CheckFailed()
         {
@@ -148,6 +168,8 @@ namespace SimpleCultivation
             base.PostExposeData();
             Scribe_Values.Look(ref currentCheckStage, "currentCheckStage");
             Scribe_References.Look(ref coreBeingMoved, "coreBeingMoved");
+            Scribe_BodyParts.Look(ref partBeingAssigned, "partBeingAssigned");
+
         }
     }
 }

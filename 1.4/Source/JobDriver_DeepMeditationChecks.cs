@@ -7,7 +7,7 @@ namespace SimpleCultivation
 {
     public class JobDriver_DeepMeditationChecks : JobDriver_DeepMeditationBase
     {
-        public override int MeditationPeriod => GenDate.TicksPerHour * 10;
+        public override int MeditationPeriod => SimpleCultivationSettings.devMode ? 1000 : GenDate.TicksPerHour * 10;
         public override string GetReport()
         {
             return base.GetReport() + "SC.Stage".Translate(pawn.GetComp<CompQi>().currentCheckStage + 1);
@@ -20,12 +20,12 @@ namespace SimpleCultivation
         }
         public override void OnCompleted()
         {
-            pawn.GetComp<CompQi>().CheckCompleted();
             var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_CoreAlignmentDrainChecks);
             if (hediff != null)
             {
                 pawn.health.RemoveHediff(hediff);
             }
+            pawn.GetComp<CompQi>().CheckCompleted();
         }
 
         public override void OnCancelled()

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using RimWorld;
+using System.Collections.Generic;
 using Verse.AI;
 
 namespace SimpleCultivation
@@ -13,7 +14,9 @@ namespace SimpleCultivation
         public bool isCompletedSuccessfully;
         public override IEnumerable<Toil> MakeNewToils()
         {
-            yield return Toils_General.Wait(MeditationPeriod).WithProgressBarToilDelay(TargetIndex.A);
+            var meditate = Toils_General.Wait(MeditationPeriod).WithProgressBarToilDelay(TargetIndex.A);
+            meditate.socialMode = RandomSocialMode.Off;
+            yield return meditate;
             yield return new Toil
             {
                 initAction = delegate
@@ -29,6 +32,7 @@ namespace SimpleCultivation
                     OnCancelled();
                 }
             });
+
         }
 
         public abstract void OnCompleted();

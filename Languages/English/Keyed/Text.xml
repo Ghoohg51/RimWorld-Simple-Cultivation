@@ -9,5 +9,5 @@
 	<SC.ShatteredCoreWarning>Shattered core prevents from core formation. Heal or remove it first.</SC.ShatteredCoreWarning>
 	<SC.Stage> Stage {0}.</SC.Stage>
 	<SC.ShatteredCore>Shattered core.</SC.ShatteredCore>
-	<SC.BeginCoreAlignmentStage>Begin core alignment stage</SC.BeginCoreAlignmentStage>
+	<SC.BeginCoreAlignmentStage>Begin {0} alignment stage ({1})</SC.BeginCoreAlignmentStage>
 </LanguageData>

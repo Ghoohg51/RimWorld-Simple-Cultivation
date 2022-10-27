@@ -37,15 +37,29 @@ namespace SimpleCultivation
         public static List<BodyPartRecord> AvailableBodyPartsForCore(this Pawn pawn)
         {
             List<BodyPartRecord> list = new List<BodyPartRecord>();
-            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(SC_DefOf.Arms)));
-            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(BodyPartGroupDefOf.Legs)));
-            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(BodyPartGroupDefOf.FullHead)));
-            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Heart));
-            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Stomach));
+            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(SC_DefOf.Arms))
+                .GroupBy(x => x.depth).First());
+            list.AddRange(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(BodyPartGroupDefOf.Legs))
+                .GroupBy(x => x.depth).First());
+            list.Add(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.IsInGroup(SC_DefOf.HeadAttackTool))
+                .GroupBy(x => x.depth).First().First());
+            list.Add(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Heart)
+                .GroupBy(x => x.depth).First().First());
+            list.Add(pawn.health.hediffSet.GetNotMissingParts().Where(x => x.def == BodyPartDefOf.Stomach)
+                .GroupBy(x => x.depth).First().First());
             var cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>();
             var filteredList = list.Where(x => cores.Any(y => y.Part == x) is false).ToList();
-            Log.Message("filteredList: " + string.Join(", ", filteredList));
             return filteredList;
+        }
+
+        public static void StartChecksJob(this Pawn pawn)
+        {
+            pawn.jobs.StopAll();
+            if (pawn.Drafted)
+            {
+                pawn.drafter.Drafted = false;
+            }
+            pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_DeepMeditationChecks));
         }
         private static void AssignDefs()
         {
