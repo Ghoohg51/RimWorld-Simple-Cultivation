@@ -27,16 +27,24 @@ namespace SimpleCultivation
                     if (comp != null && comp.PassedChecks)
                     {
                         var availableParts = pawn.AvailableBodyPartsForCore();
-                        var cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().Where(x => x.Moved is false);
-                        foreach (var part in availableParts)
+                        if (availableParts.Any())
                         {
+                            var cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().Where(x => x.Moved is false);
                             foreach (var core in cores)
                             {
-                                opts.Add(new FloatMenuOption("SC.BeginCoreAlignmentStage".Translate(core.Label, part.Label), delegate
+                                opts.Add(new FloatMenuOption("SC.BeginCoreAlignmentStage".Translate(core.Label), delegate
                                 {
-                                    comp.coreBeingMoved = core;
-                                    comp.partBeingAssigned = part;
-                                    pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_CoreAlignmentStage, t));
+                                    var newOpts = new List<FloatMenuOption>();
+                                    foreach (var part in availableParts)
+                                    {
+                                        newOpts.Add(new FloatMenuOption("SC.MoveCoreAlignment".Translate(core.Label, part.Label), delegate
+                                        {
+                                            comp.coreBeingMoved = core;
+                                            comp.partBeingAssigned = part;
+                                            pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_CoreAlignmentStage, t));
+                                        }));
+                                    }
+                                    Find.WindowStack.Add(new FloatMenu(newOpts));
                                 }));
                             }
                         }
