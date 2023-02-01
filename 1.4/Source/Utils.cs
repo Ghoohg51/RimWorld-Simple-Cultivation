@@ -34,6 +34,10 @@ namespace SimpleCultivation
             }
         }
 
+        public static Hediff_Core GetCoreFor(this Pawn pawn, BodyPartDef def)
+        {
+            return pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().Where(x => x.part?.def == def).FirstOrDefault();
+        }
         public static List<BodyPartRecord> AvailableBodyPartsForCore(this Pawn pawn)
         {
             List<BodyPartRecord> list = new List<BodyPartRecord>();

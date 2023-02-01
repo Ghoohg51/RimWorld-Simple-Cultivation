@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="CompQi.cs" />
     <Compile Include="Gizmo_QiStatus.cs" />
+    <Compile Include="HarmonyPatches\BodyPartDef_GetMaxHealth_Patch.cs" />
     <Compile Include="HarmonyPatches\FloatMenuMakerMap_AddHumanlikeOrders_Patch.cs" />
     <Compile Include="HarmonyPatches\JobDriver_DriverTick_Patch.cs" />
     <Compile Include="HarmonyPatches\MeditationFocusDef_EnablingThingsExplanation_Patch.cs" />

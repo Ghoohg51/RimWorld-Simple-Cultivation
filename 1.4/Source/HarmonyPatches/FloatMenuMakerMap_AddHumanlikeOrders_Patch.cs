@@ -23,31 +23,36 @@ namespace SimpleCultivation
                 }
                 else if (t.def == ThingDefOf.MeditationSpot)
                 {
-                    var comp = pawn.GetComp<CompQi>();
-                    if (comp != null && comp.PassedChecks)
+                    AddMeditationJobs(pawn, opts, t);
+                }
+            }
+        }
+
+        private static void AddMeditationJobs(Pawn pawn, List<FloatMenuOption> opts, Thing t)
+        {
+            var comp = pawn.GetComp<CompQi>();
+            if (comp != null && comp.PassedChecks)
+            {
+                var availableParts = pawn.AvailableBodyPartsForCore();
+                if (availableParts.Any())
+                {
+                    var cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().Where(x => x.Moved is false);
+                    foreach (var core in cores)
                     {
-                        var availableParts = pawn.AvailableBodyPartsForCore();
-                        if (availableParts.Any())
+                        opts.Add(new FloatMenuOption("SC.BeginCoreAlignmentStage".Translate(core.Label), delegate
                         {
-                            var cores = pawn.health.hediffSet.hediffs.OfType<Hediff_Core>().Where(x => x.Moved is false);
-                            foreach (var core in cores)
+                            var newOpts = new List<FloatMenuOption>();
+                            foreach (var part in availableParts)
                             {
-                                opts.Add(new FloatMenuOption("SC.BeginCoreAlignmentStage".Translate(core.Label), delegate
+                                newOpts.Add(new FloatMenuOption("SC.MoveCoreAlignment".Translate(core.Label, part.Label), delegate
                                 {
-                                    var newOpts = new List<FloatMenuOption>();
-                                    foreach (var part in availableParts)
-                                    {
-                                        newOpts.Add(new FloatMenuOption("SC.MoveCoreAlignment".Translate(core.Label, part.Label), delegate
-                                        {
-                                            comp.coreBeingMoved = core;
-                                            comp.partBeingAssigned = part;
-                                            pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_CoreAlignmentStage, t));
-                                        }));
-                                    }
-                                    Find.WindowStack.Add(new FloatMenu(newOpts));
+                                    comp.coreBeingMoved = core;
+                                    comp.partBeingAssigned = part;
+                                    pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_CoreAlignmentStage, t));
                                 }));
                             }
-                        }
+                            Find.WindowStack.Add(new FloatMenu(newOpts));
+                        }));
                     }
                 }
             }
