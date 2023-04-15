@@ -25,6 +25,7 @@ namespace SimpleCultivation
         public static HediffDef SC_CoreAlignmentDrain;
         public static MentalBreakDef Catatonic;
         public static JobDef SC_CoreAlignmentStage;
+        public static JobDef SC_BodyRefinement;
         public static BodyPartGroupDef Arms;
         public static BodyPartGroupDef HeadAttackTool;
         public static HediffDef SC_CoreAlignmentDrainChecks;

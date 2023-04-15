@@ -11,4 +11,6 @@
 	<SC.ShatteredCore>Shattered core.</SC.ShatteredCore>
 	<SC.BeginCoreAlignmentStage>Begin {0} alignment stage</SC.BeginCoreAlignmentStage>
 	<SC.MoveCoreAlignment>Move {0} to {1}</SC.MoveCoreAlignment>
+	<SC.BeginBodyRefinement>Begin body refinement: {0}</SC.BeginBodyRefinement>
+	<SC.BodyRefinement>Body refinement: {0}</SC.BodyRefinement>
 </LanguageData>

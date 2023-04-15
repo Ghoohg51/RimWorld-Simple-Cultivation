@@ -54,6 +54,13 @@ namespace SimpleCultivation
                             Find.WindowStack.Add(new FloatMenu(newOpts));
                         }));
                     }
+                    if (cores.Any())
+                    {
+                        opts.Add(new FloatMenuOption("SC.BeginBodyRefinement".Translate(comp.bodyRefinement.ToStringPercent()), delegate
+                        {
+                            pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(SC_DefOf.SC_BodyRefinement, t));
+                        }));
+                    }
                 }
             }
         }

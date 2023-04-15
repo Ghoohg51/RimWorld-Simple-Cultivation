@@ -17,6 +17,8 @@ namespace SimpleCultivation
         public Pawn pawn => parent as Pawn;
 
         public int currentCheckStage;
+
+        public float bodyRefinement;
         public bool PassedChecks => currentCheckStage == 7;
         public Hediff_Qi Hediff => pawn.health.hediffSet.GetFirstHediffOfDef(SC_DefOf.SC_QiResource) as Hediff_Qi;
         public bool PerformingChecks => pawn.CurJobDef == SC_DefOf.SC_DeepMeditationChecks;
@@ -69,9 +71,6 @@ namespace SimpleCultivation
                 }
             }
         }
-
-
-
         public void CheckFailed()
         {
             currentCheckStage = 0;
@@ -159,6 +158,16 @@ namespace SimpleCultivation
                         }
                     }
                 };
+
+                yield return new Command_Action
+                {
+                    defaultLabel = "Add body refinement 5%",
+                    action = delegate
+                    {
+                        bodyRefinement += 0.05f;
+                        pawn.health.capacities.Notify_CapacityLevelsDirty();
+                    }
+                };
             }
         }
 
@@ -169,6 +178,7 @@ namespace SimpleCultivation
             Scribe_Values.Look(ref currentCheckStage, "currentCheckStage");
             Scribe_References.Look(ref coreBeingMoved, "coreBeingMoved");
             Scribe_BodyParts.Look(ref partBeingAssigned, "partBeingAssigned");
+            Scribe_Values.Look(ref bodyRefinement, "bodyRefinement");
 
         }
     }

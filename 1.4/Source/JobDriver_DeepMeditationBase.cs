@@ -14,11 +14,16 @@ namespace SimpleCultivation
         public bool isCompletedSuccessfully;
         public override IEnumerable<Toil> MakeNewToils()
         {
-            var meditate = Toils_General.Wait(MeditationPeriod).WithProgressBarToilDelay(TargetIndex.A);
+            yield return Toils_Goto.Goto(TargetIndex.A, PathEndMode.OnCell);
+            var meditate = Toils_General.Wait(MeditationPeriod).WithProgressBar(TargetIndex.A, () => 1f - ((float)pawn.jobs.curDriver.ticksLeftThisToil / (float)MeditationPeriod));
             meditate.socialMode = RandomSocialMode.Off;
+            meditate.AddPreTickAction(delegate
+            {
+                OnMeditationTick();
+            });
             yield return meditate;
             yield return new Toil
-            {
+            { 
                 initAction = delegate
                 {
                     isCompletedSuccessfully = true;
@@ -32,6 +37,10 @@ namespace SimpleCultivation
                     OnCancelled();
                 }
             });
+        }
+
+        public virtual void OnMeditationTick()
+        {
 
         }
 

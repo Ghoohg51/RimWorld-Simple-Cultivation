@@ -24,4 +24,10 @@
         <suspendable>false</suspendable>
 		<casualInterruptible>false</casualInterruptible>
     </JobDef>
+	
+    <JobDef>
+        <defName>SC_BodyRefinement</defName>
+        <driverClass>SimpleCultivation.JobDriver_BodyRefinement</driverClass>
+        <reportString>Performing body refinement</reportString>
+    </JobDef>
 </Defs>
